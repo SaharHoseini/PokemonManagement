@@ -1,0 +1,53 @@
+@extends('layouts.app')
+
+@section('content')
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Laravel</title>
+	<style>
+             table, th, td {
+             border: 1px solid black;
+                 }
+        </style>
+	<script type="text/javascript">
+	      $(document).ready(function($){
+        	$('.added').hide();
+        	$('.add').click(function() {
+                $(this).hide("fast");
+	       $(this).next('.added').fadeIn("slow");
+             });
+           });
+	</script>
+ </head>
+	<body style="background-color=:#f3fde7">
+		<div class="container" style="background-color:#f3fde7">
+		<div class="content">
+	        		<tab
+				<caption bgcolor="#f1f1c1">There Are {{$pokemons->count()}} Pokemon(s) Registered In The System</caption>
+				<tr>
+				<caption bgcolor="#f1f1c1">There Are {{$pokemons->count()}} Pokemon(s) Registered In The System</caption>	
+   					 <th>ID</th>
+   					 <th>Name</th>
+					 <th>Trainer</th>
+ 				</tr>
+					<h3> Pokemons Data</h3>
+					        @foreach($pokemons as $pokemon)
+						 <form action="{{ url('/delete',[$pokemon->id] )}}" method="PUT">
+							<tr>
+						        <td width="25%" align="center">{{$pokemon->id}}</td>
+						        <td width="25%" align="center"> {{$pokemon->name}}</td>
+						        <td width="25%" align="center"> {{$pokemon->trainer->name}}</td>
+							<td width="25%" align="center" name="{{$pokemon->id}}"><button> Delete Pokemon</button></td>
+						</form>
+						@endforeach
+				
+				</table>
+		 
+		</div>
+         	</div>
+	</body>
+</html>
+
+@endsection
+
